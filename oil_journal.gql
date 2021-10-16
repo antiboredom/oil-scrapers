@@ -1,0 +1,99 @@
+query getContentStream(
+  $sectionId: Int
+  $limit: Int
+  $skip: Int
+  $includeContentTypes: [ContentType!]
+  $issueId: Int
+  $relatedToId: Int
+  $authorId: Int
+  $scheduleOption: Int
+  $requirePrimaryImage: Boolean
+  $excludeContentIds: [Int!]
+  $includeContentIds: [Int!]
+  $sectionBubbling: Boolean
+) {
+  getContentStream(
+    input: {
+      sectionId: $sectionId
+      includeContentTypes: $includeContentTypes
+      excludeContentIds: $excludeContentIds
+      includeContentIds: $includeContentIds
+      issueId: $issueId
+      authorId: $authorId
+      relatedTo: { id: $relatedToId }
+      scheduleOption: $scheduleOption
+      requirePrimaryImage: $requirePrimaryImage
+      sectionBubbling: $sectionBubbling
+      pagination: { limit: $limit, skip: $skip }
+    }
+  ) {
+    edges {
+      node {
+        id
+        type
+        name
+        # shortName
+        teaser(input: { useFallback: true, maxLength: 175 })
+        published
+        labels
+        primaryImage {
+          # name
+          src
+          credit
+          alt
+          # isLogo
+          # displayName
+          # __typename
+        }
+        # primarySection {
+        #   alias
+        #   name
+        #   __typename
+        # }
+        siteContext {
+          path
+          # __typename
+        }
+        company {
+          id
+          name
+          fullName
+          alias
+          # __typename
+        }
+        userRegistration {
+          isRequired
+          accessLevels
+          # __typename
+        }
+        # ... on Authorable {
+        #   authors {
+        #     edges {
+        #       node {
+        #         name
+        #         url
+        #         __typename
+        #       }
+        #       __typename
+        #     }
+        #     __typename
+        #   }
+        #   __typename
+        # }
+        ... on ContentEvent {
+          startDate
+          endDate
+          __typename
+        }
+        ... on ContentWebinar {
+          startDate
+          __typename
+        }
+        __typename
+      }
+      __typename
+    }
+    __typename
+  }
+}
+

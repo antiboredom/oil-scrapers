@@ -33,7 +33,7 @@ query getContentStream(
         type
         name
         # shortName
-        teaser(input: { useFallback: true, maxLength: 175 })
+        teaser(input: { useFallback: true, maxLength: 1075 })
         published
         labels
         primaryImage {

@@ -34,6 +34,39 @@ headers = {
 }
 
 
+def get_dead_wells(page=1, per_page=100, min_oil=100000, last_produced=1):
+    skip = (page - 1) * per_page
+
+    params = {
+        "wellFilters": {
+            "aoi": "Map",
+            "northeastLatitude": 80.4303299657727,
+            "northeastLongitude": -29.443359250000007,
+            "southwestLatitude": -17.392579663677353,
+            "southwestLongitude": -231.94335925000001,
+            "zoom": 3,
+            "source": "00000000-0000-0000-0000-000000000000",
+            "aliasedStatuses": {"included": [2942]},
+        },
+        "dataType": "Well",
+        "take": per_page,
+        "skip": skip,
+        "page": page,
+        "pageSize": per_page,
+        "group": [],
+    }
+
+    response = requests.post(
+        "https://app.welldatabase.com/browse/wells/list",
+        headers=headers,
+        cookies=cookies,
+        data=json.dumps(params),
+    )
+
+    results = response.json()
+    return results
+
+
 def get_wells(page=1, per_page=100, min_oil=100000, last_produced=1):
     skip = (page - 1) * per_page
 
@@ -78,7 +111,7 @@ def clean_listing(data):
 
 
 def get_all():
-    results = get_wells()
+    results = get_dead_wells()
     data = [clean_listing(i) for i in results["data"]]
 
     per_page = 100
@@ -87,14 +120,14 @@ def get_all():
 
     print(total_pages)
     data = []
-    for p in range(869, total_pages):
-        print(p)
+    for p in range(6679, total_pages):
+        print(p, total_pages)
         try:
-            _data = get_wells(page=p)
+            _data = get_dead_wells(page=p)
             data += [clean_listing(i) for i in _data["data"]]
             time.sleep(0.2)
 
-            with open("big_active_wells2.json", "w") as outfile:
+            with open("deadwells6.json", "w") as outfile:
                 json.dump(data, outfile)
         except Exception as e:
             print(e)
@@ -126,5 +159,5 @@ def merge():
 
 
 if __name__ == "__main__":
-    # get_all()
-    merge()
+    get_all()
+    # merge()

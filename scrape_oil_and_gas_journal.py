@@ -88,6 +88,7 @@ def get_section(section_id, limit=10, max_results=2000):
 
 
 if __name__ == "__main__":
+    # print(get_page(sections[0][0], 50, 20810))
     for section_id, section_name in sections:
         print(section_name)
         results = get_section(section_id, max_results=2000)

@@ -15,6 +15,7 @@ def get_page(p=1):
         url = title.attrs.get("href")
         title = title.text
         employer_block = j.find("address", first=True).text.split("\n")
+        employer_block = [l for l in employer_block if l != "" and l != "Featured Employer"]
         employer = employer_block[0]
         location = employer_block[1]
 
@@ -54,7 +55,7 @@ def get_page(p=1):
 
 def get_all():
     jobs = []
-    for p in range(1, 1000000):
+    for p in range(1, 10000000):
         print(p)
         results = get_page(p)
         if len(results) == 0:

@@ -11,6 +11,7 @@ sections = [
     (32498, "refining"),
     (32492, "drilling"),
     (32488, "exploration"),
+    (32481, "general_interest"),
 ]
 
 headers = {
@@ -88,9 +89,11 @@ def get_section(section_id, limit=10, max_results=2000):
 
 
 if __name__ == "__main__":
-    # print(get_page(sections[0][0], 50, 20810))
+    # items = get_page(sections[0][0], 200, 23000)
+    # for i in items:
+    #     print(i.get("date"), i.get("name"))
     for section_id, section_name in sections:
         print(section_name)
-        results = get_section(section_id, max_results=2000)
+        results = get_section(section_id, limit=200, max_results=23000)
         with open("news/" + section_name + ".json", "w") as outfile:
             json.dump(results, outfile)

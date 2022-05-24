@@ -1,5 +1,6 @@
 import requests
 import csv
+from glob import glob
 import time
 import json
 
@@ -134,14 +135,16 @@ def get_all():
 
 
 def merge():
-    with open("big_active_wells.json", "r") as infile:
-        data = json.load(infile)
-    with open("big_active_wells2.json", "r") as infile:
-        data2 = json.load(infile)
+    data = []
+    # with open("big_active_wells.json", "r") as infile:
+    #     data = json.load(infile)
+    # with open("big_active_wells2.json", "r") as infile:
+    #     data2 = json.load(infile)
+    for f in glob("deadwells*.json"):
+        with open(f, "r") as infile:
+            data += json.load(infile)
 
-    data += data2
-
-    data_file = open("bigwells.csv", "w")
+    data_file = open("deadwells.csv", "w")
     csv_writer = csv.writer(data_file)
 
     count = 0
@@ -159,5 +162,5 @@ def merge():
 
 
 if __name__ == "__main__":
-    get_all()
-    # merge()
+    # get_all()
+    merge()

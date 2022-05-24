@@ -26,4 +26,5 @@ def parse_old_stuff():
 if __name__ == "__main__":
     results = parse_old_stuff()
     for r in results:
-        print(r['date'], r['name'])
+        date = r["date"].strftime("%Y-%m-%d")
+        print(date, r['name'])

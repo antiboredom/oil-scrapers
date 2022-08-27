@@ -1,0 +1,95 @@
+:root {
+  --aspect: 3515 / 6000;
+  --h: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: #000;
+  background-color: #000;
+  font-family: "Times New Roman", "Times", serif;
+  overflow: hidden;
+}
+
+#app {
+  height: var(--h);
+  aspect-ratio: var(--aspect);
+  font-size: 250px;
+  color: #fff;
+  background-color: #000;
+  margin: 0px auto;
+  overflow: hidden;
+  position: relative;
+}
+
+#app section {
+  position: absolute;
+  height: var(--h);
+  aspect-ratio: var(--aspect);
+  z-index: 999;
+  box-shadow: inset 0px 8vh 6vh -6vh black, inset 0px -8vh 6vh -6vh black;
+}
+
+#app div.content {
+  background: #000;
+  color: #fff;
+  height: var(--h);
+  aspect-ratio: var(--aspect);
+  padding: 2vh;
+  position: absolute;
+}
+
+.loading {
+  display: grid;
+  place-items: center;
+  height: var(--h);
+  aspect-ratio: var(--aspect);
+}
+
+.loading p {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+@keyframes slide-down-in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes slide-up-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}

@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  color: #fff;
+  background-color: #000;
+  font-family: "Times New Roman", "Times", serif;
+}
+
+#app {
+  height: 100%;
+  font-size: 16px;
+  /* display: grid; */
+  /* grid-template-rows: repeat(10fr); */
+}
+
+#app p {
+  animation-name: fadein;
+  animation-duration: 5s;
+  /* margin: 0; */
+}
+
+#app p span {
+  animation-name: fadein;
+  animation-duration: 0.8s;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+  /* 50% { */
+  /*   opacity: 1; */
+  /* } */
+  /* 100% { */
+  /*   opacity: 0; */
+  /* } */
+}

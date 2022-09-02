@@ -32,7 +32,7 @@ async function slideShow() {
   el.classList.add("content");
   el.style.padding = `${paddingV}vh ${paddingH}vh`;
   // line = line.replace("It produced", "<br><br>It produced");
-  el.innerHTML = `<small>${index + 1} of ${lines.length}</small><br><br>${line}`;
+  el.innerHTML = `<p>${index + 1} of ${lines.length}</p>${line}`;
   // el.textContent = `${line}`;
   el.style.animation = `${animation}-in ${transition}ms linear forwards`;
   container.prepend(el);

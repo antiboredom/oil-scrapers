@@ -49,6 +49,12 @@ html {
   hyphens: auto;
 }
 
+div.content p {
+  margin: 0;
+  /* margin-bottom: 10px; */
+  font-size: 0.6em;
+}
+
 .loading {
   display: grid;
   place-items: center;

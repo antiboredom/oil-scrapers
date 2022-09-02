@@ -42,8 +42,11 @@ html {
   color: #fff;
   height: var(--h);
   aspect-ratio: var(--aspect);
+  /* padding: 20vh 10vh; */
   padding: 2vh;
   position: absolute;
+  /* text-align: justify; */
+  hyphens: auto;
 }
 
 .loading {

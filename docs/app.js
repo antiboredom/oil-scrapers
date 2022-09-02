@@ -1,7 +1,9 @@
 const urlParams = new URLSearchParams(window.location.search);
-let transition = urlParams.get("transition") || 5000;
-let restingTime = urlParams.get("rest") || 1000;
+let transition = urlParams.get("transition") || 10000; //5000
+let restingTime = urlParams.get("rest") || 2000; // 2000
 const direction = urlParams.get("direction") || "up";
+const paddingH = urlParams.get("paddh") || 2;
+const paddingV = urlParams.get("paddv") || 10;
 
 transition = +transition;
 restingTime = +restingTime;
@@ -25,10 +27,12 @@ function sleep(ms) {
 async function slideShow() {
   clearTimeout(timeout);
 
-  const line = lines[index];
+  let line = lines[index];
   const el = document.createElement("div");
   el.classList.add("content");
-  el.textContent = `${index + 1} of ${lines.length}: ${line}`;
+  el.style.padding = `${paddingV}vh ${paddingH}vh`;
+  // line = line.replace("It produced", "<br><br>It produced");
+  el.innerHTML = `<small>${index + 1} of ${lines.length}</small><br><br>${line}`;
   // el.textContent = `${line}`;
   el.style.animation = `${animation}-in ${transition}ms linear forwards`;
   container.prepend(el);
@@ -67,5 +71,12 @@ async function main() {
   setTimeout(slideShow, delay);
   // slideShow();
 }
+
+window.addEventListener("resize", () => {
+  const els = container.querySelectorAll("div");
+  els.forEach(el => {
+    textFit(el, { maxFontSize: 1000, reProcess: true });
+  });
+});
 
 main();

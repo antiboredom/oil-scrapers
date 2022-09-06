@@ -1,5 +1,5 @@
 :root {
-  --aspect: 3515 / 6000;
+  --aspect: 300 / 697;
   --h: 100vh;
 }
 
@@ -46,7 +46,7 @@ html {
   padding: 2vh;
   position: absolute;
   /* text-align: justify; */
-  hyphens: auto;
+  /* hyphens: auto; */
 }
 
 div.content p {

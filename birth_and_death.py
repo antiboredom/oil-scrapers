@@ -9,8 +9,9 @@ date_template = "%A %B {S} %Y"
 def suffix(d):
     return "th" if 11 <= d <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(d % 10, "th")
 
+
 def custom_strftime(format, t):
-    return t.strftime(format).replace('{S}', str(t.day) + suffix(t.day))
+    return t.strftime(format).replace("{S}", str(t.day) + suffix(t.day))
 
 
 def parse_wells():
@@ -68,8 +69,12 @@ def parse_wells():
 
         death = f"and was plugged and abandoned on {plug}."
         totals = f" It produced {total_oil:,.0f} barrels of oil."
+        sentence = birth + drilling + death + totals
+        if " nan " in sentence:
+            continue
+        print(sentence)
 
-        print(birth + drilling + death + totals)
+        # print(birth + drilling + death + totals)
 
     # items = []
     # with open("./deadwells.csv", "r") as infile:
